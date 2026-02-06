@@ -21,49 +21,39 @@
 
 // Explanation: Compare the next unprocessed arrival time from both logs and append the earlier one to the final log until all entries are processed
 
-#include <stdio.h>
+#include<stdio.h>
 
-int main() {
-    int p;
-    scanf("%d", &p);
-    int arr1[p];
-    for(int i = 0; i < p; i++) {
-        scanf("%d", &arr1[i]);
+int main(){
+    int n,x;
+    printf("Enter the size of 1st array: ");
+    scanf("%d", &n);
+    int a[100], b[100];
+    for(int i=0; i<n; i++){
+        scanf("%d", &a[i]);
     }
-    
-    int q;
-    scanf("%d", &q);
-    int arr2[q];
-    for(int i = 0; i < q; i++) {
-        scanf("%d", &arr2[i]);
+    printf("Enter the size of 2nd array: ");
+    scanf("%d", &x);
+    for(int j=0; j<x; j++){
+        scanf("%d", &b[j]);
     }
-    
-    int merged[p + q];
-    int i = 0, j = 0, k = 0;
-    
-    while (i < p && j < q) {
-        if (arr1[i] <= arr2[j]) {
-            merged[k++] = arr1[i++];
-        } else {
-            merged[k++] = arr2[j++];
+    int i=0, j=0;
+    while(i < n && j < x){
+        if(a[i] <= b[j]){
+            printf("%d ", a[i]);
+            i++;
+        }
+        else{
+            printf("%d ", b[j]);
+            j++;
         }
     }
-    
-    while (i < p) {
-        merged[k++] = arr1[i++];
+    while(i<n){
+        printf("%d ", a[i]);
+        i++;
     }
-    
-    while (j < q) {
-        merged[k++] = arr2[j++];
+    while(j<x){
+        printf("%d ", b[j]);
+        j++;
     }
-    
-    for(int idx = 0; idx < p + q; idx++) {
-        printf("%d", merged[idx]);
-        if (idx < p + q - 1) {
-            printf(" ");
-        }
-    }
-    printf("\n");
-    
     return 0;
 }
