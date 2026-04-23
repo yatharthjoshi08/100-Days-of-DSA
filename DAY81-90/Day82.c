@@ -28,3 +28,44 @@
 // - The upper bound is at index 5, which is the first element greater than 4 (i.e., 5).
 // Binary Search is used to find both bounds efficiently in O(log n) time.
 
+#include <stdio.h>
+
+int lower_bound(int* arr, int n, int x) {
+    int low = 0, high = n;
+    while (low < high) {
+        int mid = low + (high - low) / 2;
+        if (arr[mid] >= x) {
+            high = mid;
+        } else {
+            low = mid + 1;
+        }
+    }
+    return low;
+}
+
+int upper_bound(int* arr, int n, int x) {
+    int low = 0, high = n;
+    while (low < high) {
+        int mid = low + (high - low) / 2;
+        if (arr[mid] > x) {
+            high = mid;
+        } else {
+            low = mid + 1;
+        }
+    }
+    return low;
+}
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    int arr[10000];
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    int x;
+    scanf("%d", &x);
+    
+    printf("%d %d\n", lower_bound(arr, n, x), upper_bound(arr, n, x));
+    return 0;
+}
